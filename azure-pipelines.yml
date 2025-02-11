@@ -1,0 +1,27 @@
+trigger:
+- main
+
+pool:
+  name: 'Self-hosted agent'
+
+steps:
+- task: UseJava@1
+  inputs:
+    versionSpec: '11'
+    jdkArchitecture: 'x64'
+
+- script: |
+    mvn -B clean install
+  displayName: 'Build and Test with Maven'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    mergeTestResults: true
+    testRunTitle: 'Maven Test Results'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/target'
+    artifact: 'target'
+    publishLocation: 'pipeline'
