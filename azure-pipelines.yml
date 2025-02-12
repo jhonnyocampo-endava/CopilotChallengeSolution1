@@ -7,7 +7,7 @@ pool:
 steps:
 - task: UseJava@1
   inputs:
-    versionSpec: '11'
+    versionSpec: '21'
     jdkArchitecture: 'x64'
 
 - script: |
