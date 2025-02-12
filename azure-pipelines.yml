@@ -4,12 +4,6 @@ trigger:
 pool:
   name: 'Self-hosted agent'
 
-steps:
-- task: UseJava@1
-  inputs:
-    versionSpec: '21'
-    jdkArchitecture: 'x64'
-
 - script: |
     mvn -B clean install
   displayName: 'Build and Test with Maven'
