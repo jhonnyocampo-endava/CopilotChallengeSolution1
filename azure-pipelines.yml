@@ -4,6 +4,7 @@ trigger:
 pool:
   name: 'Self-hosted agent'
 
+steps:
 - script: |
     mvn -B clean install
   displayName: 'Build and Test with Maven'
